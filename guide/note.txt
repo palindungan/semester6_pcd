@@ -1,0 +1,15 @@
+# konversi design GUI ke file python 
+pyuic5 -x designGUI.ui -o run.py
+
+# library yang harus diinstal :
+1. opencv (conda install -c conda-forge opencv)
+2. pyqt (conda install -c anaconda pyqt)
+3. sys
+
+# import semua yang dibutuhkan :
+import cv2
+import numpy as np
+from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtWidgets import (QFileDialog)
+from PyQt5.QtGui import QPixmap, QImage
+import sys
