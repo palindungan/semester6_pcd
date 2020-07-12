@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'designGUI.ui'
 #
-# Created by: PyQt5 UI code generator 5.12.3
+# Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -30,14 +30,17 @@ class Ui_MainWindow(object):
         self.gBox_rightButton.setTitle("")
         self.gBox_rightButton.setObjectName("gBox_rightButton")
         self.pBtn_save = QtWidgets.QPushButton(self.gBox_rightButton)
-        self.pBtn_save.setGeometry(QtCore.QRect(10, 20, 75, 23))
+        self.pBtn_save.setGeometry(QtCore.QRect(10, 230, 91, 23))
         self.pBtn_save.setObjectName("pBtn_save")
         self.pBtn_getRGB = QtWidgets.QPushButton(self.gBox_rightButton)
-        self.pBtn_getRGB.setGeometry(QtCore.QRect(10, 50, 75, 23))
+        self.pBtn_getRGB.setGeometry(QtCore.QRect(10, 10, 91, 23))
         self.pBtn_getRGB.setObjectName("pBtn_getRGB")
         self.pBtn_getFitur = QtWidgets.QPushButton(self.gBox_rightButton)
-        self.pBtn_getFitur.setGeometry(QtCore.QRect(10, 80, 75, 23))
+        self.pBtn_getFitur.setGeometry(QtCore.QRect(10, 40, 91, 23))
         self.pBtn_getFitur.setObjectName("pBtn_getFitur")
+        self.pBtn_add = QtWidgets.QPushButton(self.gBox_rightButton)
+        self.pBtn_add.setGeometry(QtCore.QRect(10, 200, 91, 23))
+        self.pBtn_add.setObjectName("pBtn_add")
         self.gBox_images = QtWidgets.QGroupBox(self.centralwidget)
         self.gBox_images.setGeometry(QtCore.QRect(10, 60, 591, 261))
         self.gBox_images.setTitle("")
@@ -149,9 +152,10 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.pBtn_save.setText(_translate("MainWindow", "Save"))
+        self.pBtn_save.setText(_translate("MainWindow", "Save to Excel"))
         self.pBtn_getRGB.setText(_translate("MainWindow", "Get RGB"))
         self.pBtn_getFitur.setText(_translate("MainWindow", "Get Fitur"))
+        self.pBtn_add.setText(_translate("MainWindow", "Add"))
         self.lbl_imgOriginal.setText(_translate("MainWindow", "Original Image"))
         self.lbl_imgResult.setText(_translate("MainWindow", "Final Result"))
         self.gBox_mainMenu.setTitle(_translate("MainWindow", "Main Menu"))
