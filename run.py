@@ -14,6 +14,10 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import (QFileDialog)
 from PyQt5.QtGui import QPixmap, QImage
 
+import pandas as pd
+from pandas import ExcelWriter
+from pandas import ExcelFile
+
 # kodingan sendiri
 import cv2
 import numpy as np
@@ -178,6 +182,16 @@ class Ui_MainWindow(object):
     def mainProgram(self):
         self.cek_gambar = False
 
+        self.excel_no = 0
+        self.excel_list_no = []
+        self.excel_list_data = []
+        self.excel_list_r = []
+        self.excel_list_g = []
+        self.excel_list_b = []
+        self.excel_list_total_objek = []
+        self.excel_list_total_perimeter = []
+        self.excel_list_total_area = []
+
         self.cb_file.currentIndexChanged.connect(self.onChange_cb_file)
         self.cb_edit.currentIndexChanged.connect(self.onChange_cb_edit)
 
@@ -185,6 +199,9 @@ class Ui_MainWindow(object):
         self.pBtn_getFitur.clicked.connect(self.getFitur)
 
         self.pBtn_zoom.clicked.connect(self.zoom)
+
+        self.pBtn_add.clicked.connect(self.add_to_array)
+        self.pBtn_save.clicked.connect(self.save_to_file)
 
     def onChange_cb_file(self, i):
         cb_file_val = self.cb_file.currentText()
@@ -257,6 +274,9 @@ class Ui_MainWindow(object):
     def openImage(self):
         file_name, _ = QFileDialog.getOpenFileName(self.window, 'Open Image File', r"",
                                                    "Image files (*.jpg *.jpeg *.png)")
+
+        self.global_file_name = file_name
+
         if file_name != '':
             self.img = cv2.imread(file_name, 1)
             self.final_image = self.img
@@ -424,6 +444,46 @@ class Ui_MainWindow(object):
         # BGR to RGB
         outImage = outImage.rgbSwapped()
         return outImage
+
+    def save_to_file(self):
+        df = pd.DataFrame({
+            'No': self.excel_list_no,
+            'Alamat': self.excel_list_data,
+            'R': self.excel_list_r,
+            'G': self.excel_list_g,
+            'B': self.excel_list_b,
+            'Total Objek': self.excel_list_total_objek,
+            'Total Perimeter': self.excel_list_total_perimeter,
+            'Total Area': self.excel_list_total_area
+        })
+
+        writer = ExcelWriter('file_inant.xlsx')
+        df.to_excel(writer, 'dataset1', index=False)
+        writer.save()
+
+        print("Berhasil Menyimpan Excel")
+
+    def add_to_array(self):
+        r = self.lbl_valueR.text()
+        g = self.lbl_valueG.text()
+        b = self.lbl_valueB.text()
+        total_objek = self.lbl_valueFitur1.text()
+        total_perimeter = self.lbl_valueFitur2.text()
+        total_area = self.lbl_valueFitur3.text()
+
+        if r != '' and g != '' and b != '' and total_objek != '' and total_perimeter != '' and total_area != '':
+            self.excel_no = self.excel_no + 1
+            self.excel_list_no.append(self.excel_no)
+            self.excel_list_data.append(self.global_file_name)
+            self.excel_list_r.append(r)
+            self.excel_list_g.append(g)
+            self.excel_list_b.append(b)
+            self.excel_list_total_objek.append(total_objek)
+            self.excel_list_total_perimeter.append(total_perimeter)
+            self.excel_list_total_area.append(total_area)
+            print('Berhasil Add Data')
+        else:
+            print('data ada yang kosong')
 
     def nothing(self):
         pass
