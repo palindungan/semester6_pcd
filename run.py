@@ -453,7 +453,7 @@ class Ui_MainWindow(object):
             'G': self.excel_list_g,
             'B': self.excel_list_b,
             'Total Objek': self.excel_list_total_objek,
-            'Total Perimeter': self.excel_list_total_perimeter,
+            'Total Point': self.excel_list_total_perimeter,
             'Total Area': self.excel_list_total_area
         })
 
